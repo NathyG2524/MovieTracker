@@ -1,10 +1,12 @@
 # MovieTracker
-    This web application lets users keep a list of the movies they have watched and assign ratings to each movie. It then provides some useful insight into their movie preferences and habits.
+    This web application lets users keep a list of the movies they have watched and assign ratings to each movie. 
+    It then provides some useful insight into their movie preferences and habits.
 
 
 ## Table of content
 
 - [Technologies](#technologies)
+
 - [Getting Started](#getting-started)
     - [Backend](#for-the-backend)
     - [Frontend](#for-the-frontend)
@@ -18,7 +20,9 @@
  
 ## Getting Started
 
-    To start using this web application, simply clone this repository. You can start the app locally by downloading the neccessary dependencies for the frontend and start the app using the command "npm start". In addition you have to download the neccessary dependencies for the backend and run the backend .
+    To start using this web application, simply clone this repository. 
+    You can start the app locally by downloading the neccessary dependencies for the frontend and start the app using the command "npm start". 
+    In addition you have to download the neccessary dependencies for the backend and run the backend .
 
 clone the repository
 
@@ -73,30 +77,39 @@ npm run dev
                - I should be able to add, edit, delete movies.
 
  
+![Screenshot from 2022-12-23 02-53-03](https://user-images.githubusercontent.com/88330679/209244607-c9586710-31ff-4ac1-b37f-de14d7f6f258.png)
 
                - Each movie entry contains the following:
 
                                - Title
 
-                               - Genre: this should be selected from a fixed list of possible values (Action, Comedy, Adventure, Horror). Assume that a movie only has one genre.
+                               - Genre: this should be selected from a fixed list of possible values 
+                               (Action, Comedy, Adventure, Horror). Assume that a movie only has one genre.
 
                                - Watch date
 
                                - Rating: this is a number from 1-5
+ 
+ 
+ ![Screenshot from 2022-12-23 02-55-26](https://user-images.githubusercontent.com/88330679/209244742-4679d928-e189-4f29-9c60-8c154bf14381.png)
 
  
 
- 
+
 
     - Dashboard: Based on the movies that I have added, create a section on the web app to show the following -
 
-                - Favorite genre: this is based on the ratings that the user has given to movies of different genres. The genre which has received the highest ratings becomes the favorite.
+                - Favorite genre: this is based on the ratings that the user has given to movies of different genres. 
+                The genre which has received the highest ratings becomes the favorite.
 
                 - Average number of movies watched per month.
 
-                - Current mood: find the last movie I watched, and show a Happy face emoji if the rating is equal or higher than 4, A neutral face emoji if between 2-3, or sad face if the rating is 0-1.
-                [![dashboard](https://ibb.co/hVJ7gSt)](https://ibb.co/hVJ7gSt)
-                [![editorfild.png](https://i.postimg.cc/vBg3jdGN/editorfild.png)](https://postimg.cc/KkbPkwkP)
+                - Current mood: find the last movie I watched, and show a 
+                Happy face emoji if the rating is equal or higher than 4, 
+                A neutral face emoji if between 2-3, or 
+                sad face if the rating is 0-1.
+  ![Screenshot from 2022-12-23 02-30-43](https://user-images.githubusercontent.com/88330679/209244190-c0d901b4-fef9-4277-a143-97d16b080057.png)
+                
 
 
 
