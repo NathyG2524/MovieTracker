@@ -96,6 +96,8 @@ npm run dev
 
                 - Current mood: find the last movie I watched, and show a Happy face emoji if the rating is equal or higher than 4, A neutral face emoji if between 2-3, or sad face if the rating is 0-1.
                 ![dashboard](https://ibb.co/hVJ7gSt)
+                [![editorfild.png](https://i.postimg.cc/vBg3jdGN/editorfild.png)](https://postimg.cc/KkbPkwkP)
+
 
 
 
