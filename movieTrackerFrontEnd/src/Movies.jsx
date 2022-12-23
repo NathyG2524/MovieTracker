@@ -1,70 +1,140 @@
-import React from 'react'
+import React from "react";
+import Rating from "@mui/material/Rating";
+import { useRef, useState } from "react";
+import { Form, Button, FormField } from "semantic-ui-react";
+import { useForm, Controller } from "react-hook-form";
 
-function Movies() {
-    return (
-        <div>
-            <div class="container mx-auto rounded-lg border">
-                <div class="h-50 w-full rounded-lg bg-white ">
-                    <div class="flex items-center justify-between border-b">
-                        <div class="p-3 text-gray-700 text-lg font-bold">Tailwind Header</div>
-                        <div class="p-3 flex">
-                            <button class="text-slate-800 mx-2 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-l-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
-                                <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                </svg>
-                                </span>
-                                <span>Edit</span>
-                            </button>
-                            <button class="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-r-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
-                                <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                    </svg>
-                                </span>
-                                <span>Delete</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="p-3 text-lg text-gray-600">
-                        Tailwind Body
-                    </div>
-                    <div class="p-3 border-t text-lg text-gray-600">
-                        Tailwind Footer
-                    </div>
-                </div>
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import axiosInstance from "./axios";
+import Dashboard from "./Dashboard";
+
+
+
+
+
+function Movies(  {even, setEven}) {
+  const [genre, setGenre] = useState(null)
+  const [startDate, setStartDate] = useState(new Date());
+  const titleRef = useRef()
+
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm();
+
+  const [value, setValue] = useState(1);
+
+
+
+  const onSubmit = (e) => {
+    // const Ref = useRef()
+
+    const req = {
+      "title": e.title,
+      "rating": value,
+      "genre": genre,
+      "watchedDate": startDate
+    };
+    if (req.genre == null){
+      
+    }
+
+    
+    even ? setEven(even=false) : setEven(even=true)
+
+    axiosInstance.post('http://localhost:3000/movie', req)
+  };
+
+  return (
+    <div>
+      <div className="container mx-auto rounded-lg border">
+        <div className="h-50 w-full rounded-lg bg-white ">
+          <div className="justify-center flex items-center border-b">
+            <Dashboard even={even}/>
+            {/* <div class="flex-shrink-0 w-2/6  6 mx-8">
+                              <img
+                                class="w-full h-full rounded-full"
+                                src="https://scontent.fadd2-1.fna.fbcdn.net/v/t39.30808-6/298820741_737293840920896_1249126908010515096_n.png?_nc_cat=101&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=R_oVZB9_d-UAX_9EOsm&_nc_oc=AQmLIRiYQzkp5ek0civaRWFNDZC3WbWr4_wHDgWcYkEpK_FZ40IkrWs1OijyHxeWh04&_nc_ht=scontent.fadd2-1.fna&oh=00_AfAIE8DUoOKZhdcxWok4EsfCIpxSdIUD1sdseTG9_Dm7OQ&oe=63A7C773"
+                                alt=""
+                              />
+                              <p className="pb-3 font-mono text-2xl">Movie Tracker</p>
+                                        </div> */}
+            <div className="w-5/6">
+            <Form onSubmit={handleSubmit(onSubmit)}>
+              <Form.Field>
+                <br></br>
+                <label className="font-semibold block py-2" htmlFor="">
+                  Movie Title<span></span>
+                </label>
+
+                <input
+                  className="focus:outline-none border-b w-4/6 pb-2 border-sky-400 placeholder-gray-500"
+                  type="text"
+                  name="Title"
+                  ref={titleRef}
+                  placeholder={"FRIENDS"}
+                  {...register("title", {
+                    required: true,
+                    maxLength: 20,
+                  })}
+                />
+              </Form.Field>
+              {errors.title && (
+                <p className="hover:red-yellow-500 w-full mb-2 select-none border-l-4 border-red-400 bg-red-100 p-4 font-medium">
+                  Please enter movie title 
+                </p>
+              )}
+
+              <br></br>
+              <div onChange={(event) => {
+                    setGenre(event.target.value);
+                  }} className="my-8 mx-4">
+                <input className="mx-2 font-semibold " type="radio" value="Action" name="gender" /> Action
+                <input className="mx-2 font-semibold " type="radio" value="Drama" name="gender" /> Drama
+                <input className="mx-2 font-semibold " type="radio" value="Comedy" name="gender" /> Comedy
+                <input className="mx-2 font-semibold " type="radio" value="Adventure" name="gender" /> Adventure
+              </div>
+              {(genre == null) && (
+                <p className="hover:red-yellow-500 w-full mb-2 select-none border-l-4 border-red-400 bg-red-100 p-4 font-medium">
+                  Please select movie genre 
+                </p>
+              )}
+
+              <div className="my-8">
+                <Rating
+                  name="simple-controlled"
+                  value={value}
+                  size="large"
+                  onChange={(event, newValue) => {
+                    setValue(newValue);
+                  }}
+                />
+              </div>
+              <div>
+
+              <DatePicker className="my-3" selected={startDate} onChange={(date) => setStartDate(date)} />
+              <p class="text-slate-400 text-sm  md:block">Select date you watched the movie</p> 
+
+              </div>
+
+
+              
+
+              <button className=" rounded-full  my-8 sm:w-56 w-full   bg-gradient-to-r from-sky-600  to-teal-300 text-white text-lg font-semibold ">
+                save
+              </button>
+            </Form>
             </div>
-            <div class="container mx-auto rounded-lg border">
-                <div class="h-50 w-full rounded-lg bg-white ">
-                    <div class="flex items-center justify-between border-b">
-                        <div class="p-3 text-gray-700 text-lg font-bold">Tailwind Header</div>
-                        <div class="p-3 flex">
-                            <button class="text-slate-800 mx-2 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-l-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
-                                <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                </svg>
-                                </span>
-                                <span>Edit</span>
-                            </button>
-                            <button class="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-r-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
-                                <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                    </svg>
-                                </span>
-                                <span>Delete</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="p-3 text-lg text-gray-600">
-                        Tailwind Body
-                    </div>
-                    <div class="p-3 border-t text-lg text-gray-600">
-                        Tailwind Footer
-                    </div>
-                </div>
-            </div>
+
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
-export default Movies
+export default Movies;
