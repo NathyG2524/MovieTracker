@@ -30,6 +30,24 @@ export class MovieController {
     return this.movieService.findAll();
   }
 
+  @ApiCreatedResponse({ type: Movie })
+  @Get('fav')
+  favoriteGener() {
+    return this.movieService.favoriteGenre();
+  }
+
+  @ApiCreatedResponse({ type: Movie })
+  @Get('avg')
+  averageMovie() {
+    return this.movieService.averageMovie();
+  }
+
+  @ApiCreatedResponse({ type: Movie })
+  @Get('mood')
+  currentMood() {
+    return this.movieService.currentMood();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.movieService.findOne(+id);

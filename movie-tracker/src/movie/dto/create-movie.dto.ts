@@ -10,9 +10,13 @@ export class CreateMovieDto {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  gener: string;
+  genre: string;
 
   @ApiProperty()
   @IsNumber()
   rating: number;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  watchedDate: Date;
 }

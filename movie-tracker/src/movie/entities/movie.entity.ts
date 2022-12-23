@@ -2,7 +2,6 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  CreateDateColumn,
 } from 'typeorm';
 
 @Entity()
@@ -13,7 +12,7 @@ export class Movie {
   @Column()
   title: string;
 
-  @CreateDateColumn()
+  @Column({ type: 'timestamptz' })
   watchedDate: Date;
 
   @Column()
