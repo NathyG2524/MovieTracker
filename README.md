@@ -16,7 +16,7 @@
     - [EndPoints](#endpoints)
 
 ## Technologies
-
+![My project-1 (1)](https://user-images.githubusercontent.com/88330679/209246422-2cf29ca7-bc1c-481f-a8b1-15a47b14d350.png)
  
 ## Getting Started
 
@@ -42,7 +42,8 @@ install dependencies
 npm install
 ```
 
-Start the dev server
+Start the dev server 
+
 
 ```
 npm run start:dev
